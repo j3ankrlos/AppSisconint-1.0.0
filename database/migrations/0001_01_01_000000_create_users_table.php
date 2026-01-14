@@ -6,14 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            
+            // --- Requisitos de Escalabilidad ---
+            $table->string('cedula')->unique()->nullable(); 
+            $table->string('telefono')->nullable();
+            
+            // Relación con el Modelo de Negocio
+            $table->foreignId('business_unit_id')->nullable()->constrained('business_units')->onDelete('set null');
+            // -----------------------------------
+
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -37,9 +43,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');

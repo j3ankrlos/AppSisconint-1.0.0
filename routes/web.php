@@ -17,4 +17,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Ruta para el CRUD de Usuarios usando vista tradicional con componente Livewire embebido
+    Route::get('/usuarios', function () {
+        return view('usuarios.index');
+    })->name('usuarios.index');
+});
+
 require __DIR__.'/auth.php';

@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+    'name',
+    'email',
+    'password',
+    'cedula',           // Campo para identificación
+    'telefono',         // Campo para contacto
+    'business_unit_id', // El ID que separa los modelos de negocio
     ];
 
     /**

@@ -1,17 +1,24 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('adminlte::page')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+@section('title', 'Inicio')
+
+@section('content_header')
+    <h1>Bienvenido a Sisconint</h1>
+@stop
+
+@section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Información del Usuario</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Nombre:</strong> {{ Auth::user()->name }}</p>
+                    <p><strong>Cédula:</strong> {{ Auth::user()->cedula ?? 'No asignada' }}</p>
+                    <p><strong>Teléfono:</strong> {{ Auth::user()->telefono ?? 'No asignado' }}</p>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+@stop
